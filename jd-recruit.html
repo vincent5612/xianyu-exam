@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>京东电商·群店模式 — 0学费 长期稳定</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0f172a;color:#e2e8f0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;line-height:1.7}
+.container{max-width:800px;margin:0 auto;padding:20px}
+
+/* Hero */
+.hero{background:linear-gradient(135deg,#1e293b,#334155);border-radius:16px;padding:24px 20px 18px;text-align:center;margin-bottom:16px;border:1px solid #334155}
+.hero h1{font-size:1.3em;margin:10px 0;line-height:1.4}
+.hero h1 .highlight{color:#eab308}
+.hero .subtitle{color:#94a3b8;font-size:0.88em;margin:0}
+.hero .badge{display:inline-block;background:linear-gradient(135deg,#eab308,#f59e0b);color:#0f172a;padding:4px 14px;border-radius:8px;font-weight:700;font-size:0.8em}
+.hero .badge-sub{display:inline-block;background:#1e293b;color:#94a3b8;padding:4px 12px;border-radius:6px;font-size:0.8em;margin-top:8px;border:1px solid #334155}
+
+/* Section */
+.section{background:#1e293b;border-radius:12px;padding:24px;margin-bottom:20px;border:1px solid #334155}
+.section-title{font-size:0.95em;font-weight:700;margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid #334155;color:#f1f5f9}
+.section-title .icon{margin-right:6px}
+
+/* Card Grid */
+.card-grid{display:grid;grid-template-columns:1fr;gap:12px}
+.card{background:#0f172a;border-radius:10px;padding:16px;border:1px solid #2d3a4f}
+.card h3{font-size:0.9em;color:#eab308;margin-bottom:6px}
+.card p{font-size:0.85em;color:#94a3b8;line-height:1.6}
+.card .tag{display:inline-block;background:rgba(234,179,8,0.12);color:#eab308;padding:2px 8px;border-radius:4px;font-size:0.75em;margin-right:4px}
+
+/* Stats */
+.stats-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.stat-card{background:#0f172a;border-radius:10px;padding:16px;text-align:center;border:1px solid #2d3a4f}
+.stat-card .num{font-size:1.5em;font-weight:800;color:#eab308}
+.stat-card .label{font-size:0.8em;color:#94a3b8;margin-top:4px}
+
+/* Table */
+table{width:100%;border-collapse:collapse;font-size:0.82em}
+th{background:#2d3a4f;color:#94a3b8;font-weight:600;padding:8px 6px;text-align:center;border:1px solid #334155}
+td{padding:8px 6px;text-align:center;border:1px solid #334155;color:#e2e8f0}
+tr:nth-child(even){background:rgba(15,23,42,0.5)}
+tr.highlight td{background:rgba(234,179,8,0.08);color:#fbbf24;font-weight:600}
+
+/* Image */
+.image-container{margin:0}
+.image-container img{width:100%;height:auto;border-radius:10px;display:block;border:1px solid #2d3a4f}
+.image-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:640px){.image-grid{grid-template-columns:1fr}}
+
+/* Cost Table */
+.cost-table th:first-child,.cost-table td:first-child{text-align:left;padding-left:12px}
+
+/* Flow Steps */
+.flow{display:grid;grid-template-columns:1fr;gap:10px}
+.flow-step{display:flex;gap:12px;align-items:flex-start;background:#0f172a;border-radius:10px;padding:14px;border:1px solid #2d3a4f}
+.flow-step .step-num{background:linear-gradient(135deg,#eab308,#f59e0b);color:#0f172a;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.85em;flex-shrink:0}
+.flow-step .step-text{font-size:0.85em;color:#e2e8f0}
+.flow-step .step-text .sub{color:#94a3b8;font-size:0.9em}
+
+/* Warning */
+.warning{background:rgba(234,179,8,0.08);border:1px solid rgba(234,179,8,0.2);border-radius:10px;padding:14px;margin-top:12px;font-size:0.85em;color:#eab308}
+.warning .w-title{font-weight:700;margin-bottom:4px}
+.warning p{color:#94a3b8;margin-top:4px}
+
+/* CTA */
+.cta{background:linear-gradient(135deg,#eab308,#f59e0b);border-radius:12px;padding:18px;text-align:center;margin-bottom:20px}
+.cta h2{color:#0f172a;font-size:1em;margin-bottom:4px}
+.cta p{color:#334155;font-size:0.8em;margin-bottom:12px}
+.cta .phone{display:inline-block;background:#1e293b;color:#eab308;padding:8px 24px;border-radius:8px;font-weight:700;font-size:0.95em;text-decoration:none}
+
+/* Data subtitle */
+.data-sub{font-size:0.78em;color:#64748b;margin-top:4px;margin-bottom:12px}
+
+/* Responsive */
+@media(max-width:480px){
+  .hero{padding:28px 16px}
+  .hero h1{font-size:1.2em}
+  .stats-grid{grid-template-columns:1fr 1fr}
+  .section{padding:18px}
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<!-- ====== HERO ====== -->
+<div class="hero">
+  <div class="badge">㊗️ 2026必选 · 长期稳定 · 15天账单期</div>
+  <h1>⭕️ 京东电商 · <span class="highlight">群店模式</span></h1>
+  <p class="subtitle">0学费 · 全套技术实操陪跑 · 专业线上指导</p>
+</div>
+
+<!-- ====== ADVANTAGES ====== -->
+<div class="section" style="padding:14px 20px">
+  <div class="section-title" style="margin-bottom:10px;font-size:0.9em"><span class="icon">⭐</span>项目优势</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+    <div style="background:#0f172a;border-radius:8px;padding:14px 10px;border:1px solid #2d3a4f;text-align:center;">
+      <div style="font-size:0.95em;font-weight:700;color:#eab308;">🏆 京东服务商</div>
+      <div style="font-size:0.78em;color:#94a3b8;margin-top:4px;">官方认证 · 全国前三甲</div>
+    </div>
+    <div style="background:#0f172a;border-radius:8px;padding:14px 10px;border:1px solid #2d3a4f;text-align:center;">
+      <div style="font-size:0.95em;font-weight:700;color:#eab308;">🆓 0学费合作</div>
+      <div style="font-size:0.78em;color:#94a3b8;margin-top:4px;">免收10000元教学费</div>
+    </div>
+    <div style="background:#0f172a;border-radius:8px;padding:14px 10px;border:1px solid #2d3a4f;text-align:center;">
+      <div style="font-size:0.95em;font-weight:700;color:#eab308;">⚡ 5-7天下店</div>
+      <div style="font-size:0.78em;color:#94a3b8;margin-top:4px;">专业运营老师全程陪跑</div>
+    </div>
+    <div style="background:#0f172a;border-radius:8px;padding:14px 10px;border:1px solid #2d3a4f;text-align:center;">
+      <div style="font-size:0.95em;font-weight:700;color:#eab308;">🔄 15天账单期</div>
+      <div style="font-size:0.78em;color:#94a3b8;margin-top:4px;">收益秒到账 · 无需垫资</div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== MODE ====== -->
+<div class="section">
+  <div class="section-title"><span class="icon">📊</span>具体操作模式</div>
+  <div class="card-grid">
+    <div class="card">
+      <h3>🉐 月收益 1-3 万</h3>
+      <p>自己当店主，运营15-20家群店<br>每天工作时长3-5小时，熟悉后可放大至30-40家，收益翻倍</p>
+    </div>
+    <div class="card">
+      <h3>📕 5-7天培训下店</h3>
+      <p>专属运营答疑群，实时在线陪跑流程<br>主打实用性教学，边培训边实操，可远控分析解决问题</p>
+    </div>
+    <div class="card">
+      <h3>📊 教学内容覆盖</h3>
+      <p>小白可无痛上手实操，从0-1全流程运营教学<br>从开店 · 选品 · 上架 · 活动 · 推广到数据分析 · 店铺优化 · 软件使用等全方位教学</p>
+    </div>
+  </div>
+</div>
+
+<!-- ====== INCOME SPLIT ====== -->
+<div class="section">
+  <div class="section-title"><span class="icon">💰</span>收益分配</div>
+  <div style="display:flex;gap:8px;">
+    <div class="stat-card" style="padding:8px 0;flex:1;display:flex;align-items:center;justify-content:center;gap:8px;">
+      <div style="font-size:1.3em;font-weight:800;color:#eab308;">70%</div>
+      <div style="font-size:0.85em;color:#94a3b8;">学员七成</div>
+    </div>
+    <div class="stat-card" style="padding:8px 0;flex:1;display:flex;align-items:center;justify-content:center;gap:8px;">
+      <div style="font-size:1.3em;font-weight:800;color:#eab308;">30%</div>
+      <div style="font-size:0.85em;color:#94a3b8;">运营三成</div>
+    </div>
+  </div>
+  <div style="text-align:center;margin-top:8px;color:#94a3b8;font-size:0.82em">
+    ✅ 营业执照开店，提现秒到账 · 货品垫资15天账单期
+  </div>
+</div>
+
+<!-- ====== COST ====== -->
+<div class="section">
+  <div class="section-title"><span class="icon">📋</span>开店成本（非学费）</div>
+  <table class="cost-table">
+    <thead>
+      <tr><th>项目</th><th>费用</th><th>说明</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>营业执照</td><td>¥1,000</td><td>5张执照，有渠道可自行办理</td></tr>
+      <tr><td>保证金</td><td>¥400</td><td>次月分成时抵扣</td></tr>
+      <tr><td>选品上品</td><td>¥450</td><td>一次性工具费</td></tr>
+      <tr><td>发货软件</td><td>¥225/月</td><td>ERP发货系统</td></tr>
+      <tr><td>妙手</td><td>¥750</td><td>一次性工具费</td></tr>
+      <tr><td>解析服务</td><td>¥400</td><td>一次性工具费</td></tr>
+      <tr><td>服务费</td><td>¥0</td><td>免收10000元教学费</td></tr>
+      <tr style="background:rgba(234,179,8,0.08)"><td><strong>开店合计</strong></td><td><strong>≈¥3,000</strong></td><td>保证金部分次月抵扣</td></tr>
+    </tbody>
+  </table>
+  <div class="warning" style="margin-top:12px">
+    <div class="w-title">✅ 无隐形收费</div>
+    <p>免收10000元教学费，费用均为软件/平台硬支出。除出单垫资外无任何隐形收费。<br>相当于以前开一家店的成本，现在可以开15-20家店。</p>
+  </div>
+  <div class="warning" style="margin-top:8px;border-color:rgba(239,68,68,0.3)">
+    <div class="w-title">⚠️ 需小额投流</div>
+    <p>需小额投流（5-10元/天），严格执行指令方能稳定出单。不画大饼，只做真交付。</p>
+  </div>
+</div>
+
+<!-- ====== STUDENT DATA ====== -->
+<div class="section">
+  <div class="section-title"><span class="icon">📈</span>真实学员数据</div>
+
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px;">
+    <div class="stat-card">
+      <div class="label" style="font-size:0.78em">收益时间</div>
+      <div class="num">7天汇总</div>
+    </div>
+    <div class="stat-card">
+      <div class="label" style="font-size:0.78em">实际总收益</div>
+      <div class="num">¥38,237</div>
+    </div>
+    <div class="stat-card">
+      <div class="label" style="font-size:0.78em">预计月收益</div>
+      <div class="num">¥15.3万</div>
+    </div>
+  </div>
+
+  <div style="overflow-x:auto;">
+  <table class="cost-table" style="min-width:520px;margin:0 auto;">
+    <tr><th style="width:20%;">学员</th><th style="width:16%;">时间段</th><th style="width:20%;">收益</th><th style="width:18%;">利润率</th><th style="width:26%;">预计月利润</th></tr>
+    <tr class="highlight"><td>🥇 学员郑</td><td>7天</td><td style="font-weight:600;color:#fef9c3;">¥7,506</td><td style="color:#34d399;">33.41%</td><td style="color:#a78bfa;">¥30,024</td></tr>
+    <tr><td>🥈 学员李</td><td>7天</td><td style="font-weight:600;color:#fef9c3;">¥5,965</td><td style="color:#34d399;">40.68%</td><td style="color:#a78bfa;">¥23,860</td></tr>
+    <tr><td>🥉 学员王</td><td>7天</td><td style="font-weight:600;color:#fef9c3;">¥5,578</td><td style="color:#34d399;">36.34%</td><td style="color:#a78bfa;">¥22,312</td></tr>
+    <tr><td>4. 学员张</td><td>7天</td><td style="font-weight:600;color:#fef9c3;">¥5,196</td><td style="color:#34d399;">33.01%</td><td style="color:#a78bfa;">¥20,784</td></tr>
+    <tr><td>5. 学员吴</td><td>7天</td><td style="font-weight:600;color:#fef9c3;">¥4,920</td><td style="color:#34d399;">39.91%</td><td style="color:#a78bfa;">¥19,680</td></tr>
+    <tr><td>6. 学员陈</td><td>7天</td><td style="font-weight:600;color:#fef9c3;">¥4,644</td><td style="color:#34d399;">36.67%</td><td style="color:#a78bfa;">¥18,576</td></tr>
+    <tr><td>7. 学员周</td><td>7天</td><td style="font-weight:600;color:#fef9c3;">¥4,425</td><td style="color:#34d399;">30.54%</td><td style="color:#a78bfa;">¥17,700</td></tr>
+    <tr style="border-top:2px solid rgba(255,255,255,0.1);">
+      <td style="font-weight:700;">合计 7人</td><td></td>
+      <td style="font-weight:700;color:#a78bfa;">¥38,237</td>
+      <td style="color:#94a3b8;">均35.80%</td>
+      <td style="font-weight:700;color:#a78bfa;">¥15.3万</td>
+    </tr>
+  </table>
+  </div>
+
+  <div class="warning" style="margin-top:14px;text-align:center">
+    <div class="w-title">💡 实际收益因店铺数量、运营能力而异</div>
+    <p>大部分学员收益正常，专业指导运营老师全程陪跑，确保快速上手出单。</p>
+  </div>
+</div>
+
+<!-- ====== IMAGES ====== -->
+<div class="section">
+  <div class="section-title"><span class="icon">🖼️</span>收益截图演示</div>
+  <div class="image-grid">
+    <div class="image-container">
+      <img src="jingdong-pics/jingdong1.png" alt="收益演示1" loading="lazy">
+    </div>
+    <div class="image-container">
+      <img src="jingdong-pics/jingdong2.png" alt="收益演示2" loading="lazy">
+    </div>
+    <div class="image-container">
+      <img src="jingdong-pics/jingdong3.png" alt="收益演示3" loading="lazy">
+    </div>
+    <div class="image-container">
+      <img src="jingdong-pics/jingdong4.png" alt="收益演示4" loading="lazy">
+    </div>
+    <div class="image-container">
+      <img src="jingdong-pics/jingdong6.png" alt="收益演示5" loading="lazy">
+    </div>
+    <div class="image-container">
+      <img src="jingdong-pics/jingdong15.png" alt="收益演示6" loading="lazy">
+    </div>
+  </div>
+</div>
+
+<!-- ====== MODE TIERS ====== -->
+<div class="section">
+  <div class="section-title"><span class="icon">📌</span>合作模式</div>
+  <div style="display:grid;grid-template-columns:1fr;gap:10px;">
+
+    <div style="display:flex;gap:10px;align-items:flex-start;background:#0f172a;border-radius:10px;padding:14px;border:1px solid #2d3a4f;border-left:3px solid #eab308;">
+      <div style="background:linear-gradient(135deg,#eab308,#f59e0b);color:#0f172a;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.85em;flex-shrink:0;">1</div>
+      <div>
+        <div style="font-size:0.88em;font-weight:700;color:#eab308;">个人模式</div>
+        <div style="font-size:0.82em;color:#94a3b8;margin-top:3px;">基础15家店 → 熟悉后30-40家店 · 月收益1-3万不等</div>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:10px;align-items:flex-start;background:#0f172a;border-radius:10px;padding:14px;border:1px solid #2d3a4f;border-left:3px solid #a78bfa;">
+      <div style="background:linear-gradient(135deg,#a78bfa,#8b5cf6);color:#fff;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.85em;flex-shrink:0;">2</div>
+      <div>
+        <div style="font-size:0.88em;font-weight:700;color:#a78bfa;">工作室模式</div>
+        <div style="font-size:0.82em;color:#94a3b8;margin-top:3px;">复制3-5人团队可运营100-150家店 · 月收益3-5万不等</div>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:10px;align-items:flex-start;background:#0f172a;border-radius:10px;padding:14px;border:1px solid #2d3a4f;border-left:3px solid #34d399;">
+      <div style="background:linear-gradient(135deg,#34d399,#10b981);color:#fff;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.85em;flex-shrink:0;">3</div>
+      <div>
+        <div style="font-size:0.88em;font-weight:700;color:#34d399;">分公司模式</div>
+        <div style="font-size:0.82em;color:#94a3b8;margin-top:3px;">复制5-10人基础团队可运营300-500家店 · 月收益预计5-10万不等</div>
+      </div>
+    </div>
+
+  </div>
+  <div style="text-align:center;margin-top:12px;color:#64748b;font-size:0.78em;">
+    以上为按最基础的保守预估方式，可无限放大 · 有兴趣加微信详细了解
+  </div>
+</div>
+
+<!-- ====== ABOUT ====== -->
+<div class="section">
+  <div class="section-title" style="color:#eab308"><span class="icon">👤</span>关于我 · 安叔</div>
+  <p style="font-size:0.85em;color:#94a3b8;line-height:1.8">
+    15年RPO人力资源经验 10年个人及企业成长赋能<br>
+    专注于Ai赋能 时间管理 成长规划 策略分析 创业指导<br>
+    主要项目 京东/咸鱼电商 语聊创收 兼职项目 五维人生的被动收益体系
+  </p>
+</div>
+
+<!-- ====== CTA ====== -->
+<div class="cta">
+  <h2>想了解京东群店模式？</h2>
+  <p>加微信咨询 · 免费了解 · 0学费合作</p>
+  <div class="phone">微信：NineHalf95</div>
+</div>
+
+</div>
+
+</body>
+</html>
