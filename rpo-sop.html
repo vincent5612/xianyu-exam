@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>招聘RPO业务SOP手册 V3.0 — 伯乐说</title>
+<style>
+:root {
+  --bg: #f5f6f8;
+  --bg-alt: #f8fafc;
+  --card-bg: #ffffff;
+  --card-border: #e2e8f0;
+  --accent: #d97706;
+  --accent-light: #fef3c7;
+  --accent-bg: rgba(217,119,6,0.08);
+  --text: #1e293b;
+  --text-muted: #64748b;
+  --text-light: #94a3b8;
+  --success: #16a34a;
+  --success-bg: rgba(22,163,74,0.08);
+  --warning: #d97706;
+  --danger: #dc2626;
+  --danger-bg: rgba(220,38,38,0.06);
+  --info: #2563eb;
+  --info-bg: rgba(37,99,235,0.08);
+  --border: #e2e8f0;
+  --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-hover: 0 4px 12px rgba(0,0,0,0.08);
+  --radius: 12px;
+  --spacing: 24px;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Noto Sans SC", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  font-size: 15px;
+}
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(255,255,255,0.95); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  padding: 0 24px;
+  display: flex; align-items: center; justify-content: center;
+  height: 56px;
+}
+nav .logo {
+  position: absolute; left: 24px;
+  font-weight: 700; font-size: 18px; color: var(--accent);
+}
+nav .logo span { color: var(--text-light); font-weight: 400; font-size: 14px; }
+nav .nav-links { display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; margin: 0 auto; }
+nav .nav-links::-webkit-scrollbar { display: none; }
+.nav-links a {
+  color: var(--text-muted); text-decoration: none; font-size: 13px;
+  padding: 6px 14px; border-radius: 6px; white-space: nowrap;
+  transition: all .2s; flex-shrink: 0;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--accent); background: var(--accent-bg); }
+
+.hero {
+  margin-top: 56px;
+  background: linear-gradient(135deg, #fef3c7 0%, #ffffff 50%, #f5f6f8 100%);
+  padding: 60px 24px 40px;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+}
+.hero h1 { font-size: 36px; font-weight: 800; margin-bottom: 8px; color: var(--text); }
+.hero h1 .accent { color: var(--accent); }
+.hero .subtitle { color: var(--text-muted); font-size: 16px; max-width: 700px; margin: 0 auto; }
+.hero .meta {
+  margin-top: 16px; display: flex; justify-content: center; gap: 20px;
+  color: var(--text-muted); font-size: 13px; flex-wrap: wrap;
+}
+.hero .meta span { padding: 4px 12px; background: var(--card-bg); border-radius: 20px; border: 1px solid var(--border); box-shadow: var(--shadow); }
+
+.container { max-width: 960px; margin: 0 auto; padding: 0 20px; }
+section { padding: 40px 0; border-bottom: 1px solid var(--border); }
+section:last-child { border-bottom: none; }
+.section-header { margin-bottom: 24px; }
+.section-header h2 {
+  font-size: 24px; font-weight: 700; display: flex; align-items: center; gap: 10px; color: var(--text);
+}
+.section-header .badge {
+  font-size: 12px; padding: 2px 10px; border-radius: 20px;
+  background: var(--accent); color: #ffffff; font-weight: 600;
+}
+.section-header p { color: var(--text-muted); margin-top: 6px; font-size: 14px; }
+
+.step-card {
+  background: var(--card-bg); border-radius: var(--radius);
+  padding: 24px; margin-bottom: 16px;
+  border: 1px solid var(--border); transition: all .2s;
+  box-shadow: var(--shadow);
+}
+.step-card:hover { border-color: var(--accent); box-shadow: var(--shadow-hover); }
+.step-card .step-header {
+  display: flex; align-items: flex-start; gap: 16px; margin-bottom: 12px;
+}
+.step-card .step-num {
+  width: 40px; height: 40px; border-radius: 10px;
+  background: var(--accent); color: #ffffff;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 18px; flex-shrink: 0;
+}
+.step-card .step-title { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+.step-card .step-summary { color: var(--text-muted); font-size: 14px; }
+.step-card .step-tags { display: flex; gap: 6px; flex-wrap: wrap; margin: 8px 0; }
+.tag {
+  font-size: 11px; padding: 2px 8px; border-radius: 4px;
+  font-weight: 600; white-space: nowrap;
+}
+.tag-tool { background: var(--info-bg); color: var(--info); }
+.tag-ai { background: var(--success-bg); color: var(--success); }
+.tag-human { background: var(--danger-bg); color: var(--danger); }
+.tag-time { background: var(--accent-bg); color: var(--accent); }
+.tag-key { background: var(--danger-bg); color: var(--danger); border: 1px solid rgba(220,38,38,0.3); }
+
+.step-card ul { padding-left: 20px; margin-top: 8px; }
+.step-card li { margin-bottom: 4px; font-size: 14px; color: var(--text-muted); }
+.step-card li strong { color: var(--text); }
+
+.pitfall {
+  margin-top: 12px; padding: 12px 16px;
+  background: var(--danger-bg); border-left: 3px solid var(--danger);
+  border-radius: 0 6px 6px 0;
+}
+.pitfall .pf-label { color: var(--danger); font-weight: 600; font-size: 12px; display: block; margin-bottom: 4px; }
+.pitfall p { color: var(--text-muted); font-size: 13px; }
+
+.decision-tree {
+  background: var(--card-bg); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 24px;
+  font-family: "SF Mono", "Fira Code", "Noto Sans SC", monospace;
+  font-size: 13px; line-height: 1.8; overflow-x: auto;
+  box-shadow: var(--shadow);
+}
+.decision-tree .node { color: var(--accent); font-weight: 600; }
+.decision-tree .leaf { color: var(--success); }
+.decision-tree .error-node { color: var(--danger); }
+.decision-tree .comment { color: var(--text-muted); }
+.decision-tree .indent { padding-left: 20px; }
+.decision-tree .indent2 { padding-left: 40px; }
+.decision-tree .indent3 { padding-left: 60px; }
+
+.table-wrap { overflow-x: auto; margin-top: 12px; }
+table {
+  width: 100%; border-collapse: collapse; font-size: 14px;
+}
+th, td {
+  padding: 10px 14px; text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+th { background: var(--bg-alt); color: var(--accent); font-weight: 600; font-size: 13px; }
+td { color: var(--text-muted); }
+td strong { color: var(--text); }
+tr:hover td { background: rgba(0,0,0,0.01); }
+
+.elements-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 12px; margin: 16px 0;
+}
+.element-card {
+  background: var(--card-bg); border: 1px solid var(--border);
+  border-radius: 8px; padding: 16px;
+  transition: all .2s; box-shadow: var(--shadow);
+}
+.element-card:hover { border-color: var(--accent); box-shadow: var(--shadow-hover); }
+.element-card .el-num {
+  display: inline-block; width: 28px; height: 28px; line-height: 28px;
+  text-align: center; border-radius: 6px;
+  background: var(--accent); color: #ffffff;
+  font-weight: 700; font-size: 14px; margin-bottom: 8px;
+}
+.element-card h4 { font-size: 15px; margin-bottom: 4px; }
+.element-card .el-desc { color: var(--text-muted); font-size: 13px; }
+.element-card .el-goal { color: var(--success); font-size: 12px; margin-top: 4px; }
+
+blockquote {
+  margin: 16px 0; padding: 16px 20px;
+  background: var(--accent-bg); border-left: 3px solid var(--accent);
+  border-radius: 0 8px 8px 0;
+  color: var(--text); font-size: 14px;
+}
+blockquote strong { color: var(--accent); }
+
+.flow-diagram {
+  display: flex; align-items: center; justify-content: center;
+  flex-wrap: wrap; gap: 8px; padding: 20px;
+  background: var(--card-bg); border-radius: var(--radius);
+  border: 1px solid var(--border); margin: 16px 0;
+  box-shadow: var(--shadow);
+}
+.flow-step {
+  padding: 8px 16px; border-radius: 6px;
+  background: var(--bg-alt); color: var(--text);
+  font-size: 13px; font-weight: 500; text-align: center;
+  border: 1px solid var(--border);
+}
+.flow-step.highlight { background: var(--accent-bg); color: var(--accent); border: 1px solid rgba(217,119,6,0.3); }
+.flow-arrow { color: var(--text-light); font-size: 18px; }
+
+.steps-flow {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 12px; padding: 0; margin: 16px 0;
+}
+.step-item {
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  padding: 20px 12px 16px;
+  background: var(--card-bg); border-radius: var(--radius);
+  border: 1px solid var(--border); box-shadow: var(--shadow);
+  transition: all .2s; position: relative;
+}
+.step-item:hover { border-color: var(--accent); box-shadow: var(--shadow-hover); }
+.step-item .step-icon { font-size: 36px; line-height: 1; }
+.step-item .step-label { font-size: 16px; color: var(--text); font-weight: 700; }
+.step-item .step-desc { font-size: 12px; color: var(--text-light); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
+.step-item .step-order {
+  position: absolute; top: -10px; left: -10px;
+  width: 32px; height: 32px; border-radius: 50%;
+  background: var(--accent); color: #ffffff;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 15px; box-shadow: var(--shadow);
+}
+.step-connector { display: none; }
+
+@media (max-width: 768px) {
+  nav .nav-links { display: none; }
+  .hero h1 { font-size: 26px; }
+  .container { padding: 0 14px; }
+  .elements-grid { grid-template-columns: 1fr; }
+  .step-card .step-header { flex-direction: column; }
+  .flow-diagram { flex-direction: column; }
+  .flow-arrow { transform: rotate(90deg); }
+  .steps-flow { grid-template-columns: repeat(2, 1fr); }
+  .step-connector { transform: rotate(90deg); }
+}
+
+footer {
+  text-align: center; padding: 32px 20px;
+  color: var(--text-muted); font-size: 13px;
+  border-top: 1px solid var(--border);
+  background: var(--card-bg);
+}
+footer strong { color: var(--accent); }
+
+:target { scroll-margin-top: 70px; }
+
+.highlight-box {
+  background: var(--accent-bg);
+  border: 1px solid rgba(217,119,6,0.2);
+  border-radius: var(--radius); padding: 20px; margin: 16px 0;
+}
+.highlight-box h4 { color: var(--accent); margin-bottom: 8px; }
+
+.metrics-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+}
+.metric-card {
+  background: var(--card-bg); border: 1px solid var(--border);
+  border-radius: 8px; padding: 14px; text-align: center;
+  box-shadow: var(--shadow);
+}
+.metric-card .metric-name { font-size: 12px; color: var(--text-muted); margin-bottom: 4px; }
+.metric-card .metric-bar {
+  height: 6px; background: var(--bg-alt); border-radius: 3px; overflow: hidden;
+  margin: 8px 0;
+}
+.metric-card .metric-bar .fill { height: 100%; border-radius: 3px; }
+.metric-card .metric-values {
+  display: flex; justify-content: space-between;
+  font-size: 11px; color: var(--text-muted);
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">伯乐说 <span>RPO SOP V3.0</span></div>
+  <div class="nav-links">
+    <a href="#overview">业务全景</a>
+    <a href="#sop">五步SOP</a>
+    <a href="#six-elements">沟通六要素</a>
+    <a href="#four-step">四步回答法</a>
+    <a href="#category">候选人分类</a>
+    <a href="#decision-tree">反推决策树</a>
+    <a href="#data">数据复盘</a>
+    <a href="#objection">异议处理</a>
+    <a href="#tools">工具SOP</a>
+    <a href="#framework">框架总图</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <h1>招聘<span class="accent">RPO</span>业务</h1>
+  <h1>SOP操作手册 <span class="accent" style="font-size:28px;">V3.0</span></h1>
+  <p class="subtitle">五步标准流程 · 沟通六要素 · 四步回答法 · 反推决策树 · 候选人分类 · 数据复盘</p>
+  <div class="meta">
+    <span>📅 2026年6月</span>
+    <span>✍️ 伯乐说</span>
+    <span>📋 V3.0（决策树升级版）</span>
+  </div>
+</div>
+
+<div class="container">
+
+<section id="overview">
+  <div class="section-header">
+    <h2>一、业务全景</h2>
+    <p>14年RPO经验沉淀的系统化招聘体系</p>
+  </div>
+  <div class="highlight-box">
+    <h4>🎯 核心能力</h4>
+    <p>招聘管理 · 技能培训 · 数据管理 · 项目对接 · AI工具赋能 — 五大模块完全驾驭</p>
+  </div>
+  <h3 style="margin-bottom:12px; font-size:16px;">🔗 核心洞察：招商 = 招聘</h3>
+  <p style="color:var(--text-muted);font-size:14px;margin-bottom:6px;">
+    招聘RPO核心能力链条：
+    <strong style="color:var(--accent);">找到对的人 → 筛选 → 沟通 → 说服 → 成交 → 跟进</strong>。
+  </p>
+  <p style="color:var(--text-muted);font-size:14px;">
+    同一套知识框架，同一个底层逻辑，不论换什么岗位，什么行业，系统内核永远不变。
+  </p>
+  <h3 style="margin-bottom:12px; font-size:16px;">👥 角色分工</h3>
+  <div class="table-wrap">
+    <table>
+      <tr><th>角色</th><th>职责</th><th>关键词</th></tr>
+      <tr>
+        <td><strong>战略层</strong></td>
+        <td>战略方向、流程设计、培训体系、项目对接、AI赋能工具</td>
+        <td style="color:var(--accent);">方向+体系+赋能</td>
+      </tr>
+      <tr>
+        <td><strong>执行层</strong></td>
+        <td>日常操作执行、节点跟进、数据记录、候选人沟通</td>
+        <td style="color:var(--success);">执行+记录+反馈</td>
+      </tr>
+    </table>
+  </div>
+</section>
+
+<section id="sop">
+  <div class="section-header">
+    <h2>二、五步标准流程 <span class="badge">核心</span></h2>
+    <p>从发布职位到入职跟进的完整链路，每步标注所需资源与AI边界</p>
+  </div>
+
+  <div class="step-card">
+    <div class="step-header">
+      <div class="step-num">1</div>
+      <div style="flex:1;">
+        <div class="step-title">发布职位</div>
+        <div class="step-summary">在Boss直聘、智联招聘发布职位，设置标签管理</div>
+        <div class="step-tags">
+          <span class="tag tag-tool">🛠 Boss/智联</span>
+          <span class="tag tag-time">⏱ 日常操作</span>
+          <span class="tag tag-ai">🤖 AI可批量生成职位描述</span>
+        </div>
+      </div>
+    </div>
+    <ul>
+      <li><strong>平台：</strong>Boss直聘、智联招聘（主流量来源）</li>
+      <li><strong>标签管理：</strong>职位名称加暗号区分——"农"=农商行，"中"=中行，"招"=招联</li>
+      <li><strong>Boss技巧：</strong>每天40~60个招呼，轮转触达（前天的+昨天的+今天的）</li>
+      <li><strong>智联技巧：</strong>招呼量200~400/天，必须雨露均沾</li>
+      <li><strong>组合策略：</strong>持续职位 + 变动职位组合发布，保持曝光</li>
+    </ul>
+    <div class="pitfall">
+      <span class="pf-label">⚠️ 新人常犯错误</span>
+      <p>一个职位描述打天下，不根据岗位调整关键词 → 曝光低、简历匹配度差。正确做法：每岗至少3个版本的职位描述轮换测试。</p>
+    </div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-header">
+      <div class="step-num">2</div>
+      <div style="flex:1;">
+        <div class="step-title">后台引流 → 加微信</div>
+        <div class="step-summary">从平台获取简历后，通过电话确认再加微信</div>
+        <div class="step-tags">
+          <span class="tag tag-tool">🛠 Boss/智联</span>
+          <span class="tag tag-human">📞 必须人做：电话确认</span>
+          <span class="tag tag-ai">🤖 AI可辅助：打招呼模板</span>
+          <span class="tag tag-key">🔑 转化率关键节点</span>
+        </div>
+      </div>
+    </div>
+    <ul>
+      <li><strong>分时段触达：</strong>早上、中午、下午下班前不同时段</li>
+      <li><strong>加微前确认：</strong>先打电话——在不在深圳、学历、在职情况</li>
+      <li><strong>微信异常处理：</strong>直接电话沟通，意向明确再加微信</li>
+      <li><strong>平台注意：</strong>拿到简历不要马上加微信（避免账号安全风险）</li>
+      <li><strong>目标指标：</strong>每日加微成功30~50人（标准线），50~70人（优秀线）</li>
+    </ul>
+    <div class="pitfall">
+      <span class="pf-label">⚠️ 新人常犯错误</span>
+      <p>加微信后不马上发自我介绍和岗位信息，等候选人主动问 → 候选人转身就忘了你是谁。添加好友后30秒内必须发第一条信息。</p>
+    </div>
+  </div>
+
+  <div class="step-card" style="border-color:rgba(217,119,6,0.3);">
+    <div class="step-header">
+      <div class="step-num" style="background:var(--warning);">3</div>
+      <div style="flex:1;">
+        <div class="step-title">微信沟通 → 约面 <span class="tag tag-key" style="font-size:11px;">⚠️ 最关键节点</span></div>
+        <div class="step-summary">像朋友一样沟通，目标明确——确认意向+约定面试时间</div>
+        <div class="step-tags">
+          <span class="tag tag-human">📞 必须人做：深度沟通</span>
+          <span class="tag tag-time">⏱ 单人≥20分钟</span>
+          <span class="tag tag-ai">🤖 AI可辅助：话术参考+跟进提醒</span>
+        </div>
+      </div>
+    </div>
+    <ul>
+      <li><strong>核心原则：</strong>像朋友一样沟通。沟通时间至少20分钟起</li>
+      <li><strong>常见问题：</strong>加微后转化率低 → 要么话术问题，要么简历不精准。用反推决策树锁定根因</li>
+      <li><strong>关键动作：</strong>了解候选人真实诉求、解决疑虑、强化岗位优势、锁定面试时间</li>
+    </ul>
+    <div class="pitfall">
+      <span class="pf-label">⚠️ 新人常犯错误</span>
+      <p>聊3分钟就急着约面试 → 关系不够深，候选人答应后大概率放鸽子。至少聊20分钟：前10分钟建立信任，后10分钟推进约面。</p>
+    </div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-header">
+      <div class="step-num">4</div>
+      <div style="flex:1;">
+        <div class="step-title">面试环节</div>
+        <div class="step-summary">面试前跟进、到面率保障、面试后跟进</div>
+        <div class="step-tags">
+          <span class="tag tag-human">📞 必须人做：面试前跟进</span>
+          <span class="tag tag-ai">🤖 AI可辅助：面试提醒消息</span>
+          <span class="tag tag-time">⏱ 面试前1-2天跟进</span>
+        </div>
+      </div>
+    </div>
+    <ul>
+      <li><strong>面试前跟进：</strong>面试前1-2天必须互动——增强关系+重申岗位优势</li>
+      <li><strong>到面率低的根因：</strong>最后节点沟通+时间确认不到位</li>
+      <li><strong>通过率：</strong>通常50%左右属正常范围</li>
+      <li><strong>面试后跟进：</strong>面试结束当天发消息了解感受，预判候选人意向</li>
+    </ul>
+    <div class="pitfall">
+      <span class="pf-label">⚠️ 新人常犯错误</span>
+      <p>约好面试就不管了，到时间候选人没来才打电话 → 晚了。面试前一天的晚上必须再确认一次，发现犹豫立即针对性解决。</p>
+    </div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-header">
+      <div class="step-num">5</div>
+      <div style="flex:1;">
+        <div class="step-title">入职跟进</div>
+        <div class="step-summary">Offer后跟进、入职前维护、在职关怀</div>
+        <div class="step-tags">
+          <span class="tag tag-human">📞 必须人做：回访+关怀</span>
+          <span class="tag tag-ai">🤖 AI可辅助：定时提醒+话术模板</span>
+          <span class="tag tag-key">🔑 结算条件</span>
+        </div>
+      </div>
+    </div>
+    <ul>
+      <li><strong>Offer后：</strong>必须打电话回访，确认入职意向</li>
+      <li><strong>主观原因</strong>（对岗位有顾虑）= 沟通环节没解决 → 需改进流程</li>
+      <li><strong>客观原因</strong>（距离等）= 不可控，记录下来即可</li>
+      <li><strong>入职前维护：</strong>保持热度，防止流失</li>
+      <li><strong>在职跟进：</strong>在岗关怀，促进转介绍</li>
+    </ul>
+    <blockquote>
+      <strong>核心原则：</strong>宁可约10个人入职8个，也不要约35个人只入职3个。每个节点都要为最终结果负责。
+    </blockquote>
+  </div>
+</section>
+
+<section id="six-elements">
+  <div class="section-header">
+    <h2>三、微信沟通六要素 <span class="badge">V3.0</span></h2>
+    <p>候选人从加微信到在职跟进的完整生命周期管理</p>
+  </div>
+
+  <blockquote>
+    <strong>关键洞察：</strong>前三个要素决定你的到面率。第一步没做，第二步就尴尬；前两步没做，第三步就会陷入困境——候选人面试通过了还在犹豫要不要去，说明前段内容是缺失的。
+  </blockquote>
+
+  <div class="elements-grid">
+    <div class="element-card">
+      <div class="el-num">1</div>
+      <h4>约面前意向沟通</h4>
+      <div class="el-goal">🎯 目标：建立初始兴趣，获取简历</div>
+      <div class="el-desc">以岗位最大优势打招呼 → 了解对方情况 → 以工作经验为话题 → 工作内容简单化 → 深化沟通 → 锁定面试时间</div>
+    </div>
+    <div class="element-card">
+      <div class="el-num">2</div>
+      <h4>约面后信任沟通</h4>
+      <div class="el-goal">🎯 目标：增强信任，确认面试</div>
+      <div class="el-desc">约面成功后15~30分钟是增加信任的最佳时机。发邀约信息后要求回复确认（签字盖章效应），以闲聊为主引入薪资和岗位优势。</div>
+    </div>
+    <div class="element-card">
+      <div class="el-num">3</div>
+      <h4>面试后关系梳理</h4>
+      <div class="el-goal">🎯 目标：维护关系，预判意向</div>
+      <div class="el-desc">面试结束当天发消息了解感受。预判候选人的入职意向——犹豫的针对性解决，明确的保持热度。</div>
+    </div>
+    <div class="element-card">
+      <div class="el-num">4</div>
+      <h4>Offer沟通</h4>
+      <div class="el-goal">🎯 目标：正式通知，确认入职</div>
+      <div class="el-desc">正式Offer发出后立即电话沟通，确认入职时间。主动解决候选人最后的顾虑。</div>
+    </div>
+    <div class="element-card">
+      <div class="el-num">5</div>
+      <h4>入职前维护</h4>
+      <div class="el-goal">🎯 目标：保持热度，防止流失</div>
+      <div class="el-desc">Offer到入职日之间是最容易流失的时期。每隔2~3天互动一次，分享团队情况、岗位亮点。</div>
+    </div>
+    <div class="element-card">
+      <div class="el-num">6</div>
+      <h4>在职跟进</h4>
+      <div class="el-goal">🎯 目标：在岗关怀，转介绍</div>
+      <div class="el-desc">入职后第1天、第7天、第30天跟进。解决适应问题，发展转介绍——一个满意的员工能带来3个新候选人。</div>
+    </div>
+  </div>
+
+  <h3 style="margin:20px 0 12px;font-size:16px;">要素一详解：约面前意向沟通七步法</h3>
+  <div class="table-wrap">
+    <table>
+      <tr><th>步骤</th><th>动作要点</th></tr>
+      <tr><td><strong>A 加微信</strong></td><td>以岗位最大优势（薪资、福利、岗位）打招呼</td></tr>
+      <tr><td><strong>B 方向性</strong></td><td>不仅聊工作，多了解对方情况</td></tr>
+      <tr><td><strong>C 找话题</strong></td><td>以过往工作经验为话题，最好往下进行</td></tr>
+      <tr><td><strong>D 简单化</strong></td><td>工作性质内容尽量简单，不要过于专业化</td></tr>
+      <tr><td><strong>E 意向性</strong></td><td>想找什么工作？之前做什么？深化沟通内容</td></tr>
+      <tr><td><strong>F 时间性</strong></td><td>上午10点或下午2点哪个时间方便？</td></tr>
+      <tr><td><strong>G 问问题</strong></td><td>多问，让候选人多讲自己的情况</td></tr>
+    </table>
+  </div>
+</section>
+
+<section id="four-step">
+  <div class="section-header">
+    <h2>四、标准回答四步法 <span class="badge">V3.0</span></h2>
+    <p>候选人提问后的标准化回复流程。解决核心问题：专员只在等对方问问题，不会主动推进对话</p>
+  </div>
+
+  <div class="steps-flow">
+    <div class="step-item">
+      <span class="step-order">1</span>
+      <div class="step-icon">✅</div>
+      <div class="step-label">正面回答</div>
+      <div class="step-desc">直接回应候选人的问题，不绕弯子</div>
+    </div>
+    <div class="step-item">
+      <span class="step-order">2</span>
+      <div class="step-icon">💡</div>
+      <div class="step-label">解释问题</div>
+      <div class="step-desc">拆解问题背后的真实顾虑，先理解再回应</div>
+    </div>
+    <div class="step-item">
+      <span class="step-order">3</span>
+      <div class="step-icon">🔥</div>
+      <div class="step-label">抛优势</div>
+      <div class="step-desc">回答后立刻补一个岗位亮点，让候选人觉得值</div>
+    </div>
+    <div class="step-item">
+      <span class="step-order">4</span>
+      <div class="step-icon">❓</div>
+      <div class="step-label">引导提问</div>
+      <div class="step-desc">用反问拿回对话主动权，推进到下一步</div>
+    </div>
+  </div>
+
+  <h3 style="margin:20px 0 12px;font-size:16px;">实战案例</h3>
+  <div class="table-wrap">
+    <table>
+      <tr><th>步骤</th><th style="color:var(--accent);">候选人问：薪资架构没太明白，底薪加绩效吗？</th></tr>
+      <tr><td><strong>① 正面回答</strong></td><td>"是的，底薪+绩效"</td></tr>
+      <tr><td><strong>② 解释问题</strong></td><td>"底薪2500，绩效新人保护期两个月有2000不用考核"</td></tr>
+      <tr><td><strong>③ 抛优势</strong></td><td>"综合新人4500~5500，转正后平均8000~13000，一档社保+公积金"</td></tr>
+      <tr><td><strong>④ 引导提问</strong></td><td>"你之前做过类似岗位吗？"</td></tr>
+    </table>
+  </div>
+
+  <div class="pitfall">
+    <span class="pf-label">⚠️ 新人常犯错误</span>
+    <p>候选人问"薪资架构没明白"，专员回答"底薪2500+绩效2000"然后停住等下一个问题——对话终结。<br>
+    <strong>本质：</strong>不是在回答问题，是在借问题推进对话。每回答一个问题，必须用一个反问把对话主动权拿回来。</p>
+  </div>
+
+  <h3 style="margin:20px 0 12px;font-size:16px;">FAB法则在招聘中的应用</h3>
+  <p style="color:var(--text-muted);font-size:14px;margin-bottom:12px;">用FAB（Feature-Advantage-Benefit）结构化表达岗位优势：</p>
+  <div class="table-wrap">
+    <table>
+      <tr><th>维度</th><th>解释</th><th>招聘案例</th></tr>
+      <tr><td><strong>F — 特点</strong></td><td>这个岗位有什么</td><td>底薪2500+绩效</td></tr>
+      <tr><td><strong>A — 优势</strong></td><td>相比同行好在哪里</td><td>新人保护期两个月不用考核</td></tr>
+      <tr><td><strong>B — 利益</strong></td><td>对候选人有什么好处</td><td>前两个月保底4500+，不用担心业绩压力</td></tr>
+    </table>
+  </div>
+</section>
+
+<section id="category">
+  <div class="section-header">
+    <h2>五、候选人分类沟通法 <span class="badge">V3.0</span></h2>
+    <p>不要吃大锅饭！一个话术打天下是邀约率低的核心原因</p>
+  </div>
+
+  <h3 style="margin-bottom:12px;font-size:16px;">三问判断法</h3>
+  <p style="color:var(--text-muted);font-size:14px;margin-bottom:12px;">问三个问题快速分类：</p>
+  <ol style="color:var(--text-muted);margin-left:20px;margin-bottom:16px;">
+    <li><strong style="color:var(--text);">你现在收入多少？</strong> — 判断经济驱动力</li>
+    <li><strong style="color:var(--text);">之前做什么的？</strong> — 判断行业背景</li>
+    <li><strong style="color:var(--text);">对我们的岗位了解多少？</strong> — 判断信息差程度</li>
+  </ol>
+
+  <div class="table-wrap">
+    <table>
+      <tr><th>类别</th><th>特征</th><th>核心策略</th><th>难度</th></tr>
+      <tr>
+        <td><strong>一类：低收入/小白</strong></td>
+        <td>收入4000~6000，工厂/流水线/应届生</td>
+        <td>薪资对比法："跨度40%+提升"</td>
+        <td><span class="tag" style="background:var(--success-bg);color:var(--success);">低</span></td>
+      </tr>
+      <tr>
+        <td><strong>二类：技术下行</strong></td>
+        <td>IT/电工等，所在行业萎缩</td>
+        <td>行业前景对比法："换行稳定"</td>
+        <td><span class="tag" style="background:var(--accent-bg);color:var(--accent);">中</span></td>
+      </tr>
+      <tr>
+        <td><strong>三类：有了解但纠结</strong></td>
+        <td>知道行业，被负面信息影响</td>
+        <td>引导面试法："具体到校区谈"</td>
+        <td><span class="tag" style="background:var(--danger-bg);color:var(--danger);">高·可放掉</span></td>
+      </tr>
+    </table>
+  </div>
+</section>
+
+<section id="decision-tree">
+  <div class="section-header">
+    <h2>六、反推决策树 <span class="badge">V3.0</span></h2>
+    <p>结果差 → 往前推 → 找到根因 → 针对性改进。升级为If-Then决策逻辑，每一步告诉你现在该做什么</p>
+  </div>
+
+  <div class="decision-tree">
+    <span class="node">入职少？</span><br>
+    <span class="indent">├─ <span class="node">通过率低？</span> （面试把关不严？）<br>
+    <span class="indent2">├─ ✅ 是 → 检查面试标准：是否严格执行？</span><br>
+    <span class="indent2">├─ ❌ 否 → <span class="node">到面率低？</span></span><br>
+    <span class="indent3">├─ ✅ 是 → 面试前有没有跟进？</span><br>
+    <span class="indent3">│   ├─ 有跟进 → <span class="comment">检查跟进内容：是否只说了"记得面试"？</span></span><br>
+    <span class="indent3">│   └─ 没跟进 → <span class="leaf">✅ 立即在面试前1-2天加一步互动</span></span><br>
+    <span class="indent3">├─ ❌ 否 → <span class="node">约面成功率低？</span></span><br>
+    <span class="indent3">│   ├─ ✅ 是 → 微信沟通关系不够深</span><br>
+    <span class="indent3">│   │   └─ <span class="leaf">✅ 检查六要素执行情况：是否聊够20分钟？</span></span><br>
+    <span class="indent3">│   └─ ❌ 否 → <span class="node">加微转化率低？</span></span><br>
+    <span class="indent3" style="padding-left:60px;">├─ ✅ 是 → 后台简历匹配度低</span><br>
+    <span class="indent3" style="padding-left:60px;">│   └─ <span class="leaf">✅ 检查筛选标准+职位描述精准度</span></span><br>
+    <span class="indent3" style="padding-left:60px;">└─ ❌ 否 → <span class="node">后台简历量少？</span></span><br>
+    <span class="indent3" style="padding-left:80px;">├─ ✅ 是 → 职位曝光低或打招呼不精准</span><br>
+    <span class="indent3" style="padding-left:80px;">│   └─ <span class="leaf">✅ 调整发布时间段+关键词+打招呼话术</span></span><br>
+    <span class="indent3" style="padding-left:80px;">└─ ❌ 否 → <span class="leaf">✅ 数据正常，检查其他异常</span></span><br>
+    <span class="indent">└─ ❌ 否 → <span class="node">通过率低？</span></span><br>
+    <span class="indent2">├─ ✅ 是 → 面试把关标准执行不到位</span><br>
+    <span class="indent2">└─ ❌ 否 → <span class="node">入职率低？</span></span><br>
+    <span class="indent3">├─ ✅ 是 → Offer后回访没做到位</span><br>
+    <span class="indent3">│   └─ <span class="leaf">✅ Offer后24小时内必须电话回访</span></span><br>
+    <span class="indent3">└─ ❌ 否 → 客观原因（记录即可）</span>
+  </div>
+
+  <h3 style="margin:20px 0 12px;font-size:16px;">⚠️ 反推四原则</h3>
+  <ul style="color:var(--text-muted);margin-left:20px;">
+    <li><strong style="color:var(--text);">往下一级推：</strong>每次只往上一级找根因，不跳级</li>
+    <li><strong style="color:var(--text);">数据说话：</strong>不要靠感觉判断"好像到面率不高"，要看具体数字</li>
+    <li><strong style="color:var(--text);">先人后系统：</strong>先检查执行是否到位，再怀疑流程有问题</li>
+    <li><strong style="color:var(--text);">改一个节点测三天：</strong>不要同时改多个变量，改一个节点后跑三天数据再判断</li>
+  </ul>
+</section>
+
+<section id="data">
+  <div class="section-header">
+    <h2>七、数据复盘方法论 <span class="badge">V3.0</span></h2>
+    <p>用数据替代感觉，每天早上花5~10分钟做数据复盘</p>
+  </div>
+
+  <h3 style="margin-bottom:12px;font-size:16px;">核心数据标准</h3>
+  <div class="table-wrap">
+    <table>
+      <tr><th>指标</th><th>标准</th><th>优秀</th><th>警示</th></tr>
+      <tr><td><strong>每日约面人数</strong></td><td>3人/天</td><td>5人/天</td><td>&lt;2人</td></tr>
+      <tr><td><strong>每日加微成功</strong></td><td>30~50人</td><td>50~70人</td><td>&lt;20人</td></tr>
+      <tr><td><strong>Boss沟通量</strong></td><td>≥150/天</td><td>200~300/天</td><td>&lt;80</td></tr>
+      <tr><td><strong>后台未读</strong></td><td>—</td><td>持续99+</td><td>&lt;50</td></tr>
+    </table>
+  </div>
+
+  <div class="highlight-box" style="margin-top:20px;">
+    <h4>📋 每日复盘三步骤</h4>
+    <ol style="color:var(--text-muted);margin-left:20px;">
+      <li><strong style="color:var(--text);">看数据：</strong>昨天加了多少微信？约了几个面试？入职了几个？</li>
+      <li><strong style="color:var(--text);">反推异常：</strong>哪个指标低于标准线？用反推决策树找根因</li>
+      <li><strong style="color:var(--text);">定今日动作：</strong>今天重点突破哪一个节点？具体做什么？</li>
+    </ol>
+  </div>
+</section>
+
+<section id="objection">
+  <div class="section-header">
+    <h2>八、异议处理方法论 <span class="badge">V3.0</span></h2>
+    <p>候选人犹豫时怎么办？标准化异议处理流程</p>
+  </div>
+
+  <h3 style="margin-bottom:12px;font-size:16px;">三个核心原则</h3>
+  <ul style="color:var(--text-muted);margin-left:20px;margin-bottom:16px;">
+    <li><strong style="color:var(--text);">先认同再转化：</strong>不要否定候选人的顾虑——"你说得对，很多人都有这个顾虑"</li>
+    <li><strong style="color:var(--text);">不争对错，只给视角：</strong>候选人说"底薪太低"——不要解释为什么低，给一个他没想到的角度</li>
+    <li><strong style="color:var(--text);">解决不了不如先放下：</strong>有些顾虑当下解决不了（距离、家庭原因），记录后转下一个话题</li>
+  </ul>
+
+  <h3 style="margin-bottom:12px;font-size:16px;">负面问题转化法</h3>
+  <div class="table-wrap">
+    <table>
+      <tr><th>候选人说</th><th>不要这样回</th><th>应该这样回</th></tr>
+      <tr>
+        <td>"底薪太低了吧"</td>
+        <td style="color:var(--danger);">"这个行业都这样"</td>
+        <td style="color:var(--success);">"新人看底薪，老人看提成。我们团队做了一年的平均8000~13000，你要不要看看他们怎么做到的？"</td>
+      </tr>
+      <tr>
+        <td>"我再考虑考虑"</td>
+        <td style="color:var(--danger);">"好的那您考虑好了联系我"</td>
+        <td style="color:var(--success);">"理解。你主要顾虑哪方面？距离？薪资？还是岗位内容？我帮你针对性解答。"</td>
+      </tr>
+      <tr>
+        <td>"我不太想做销售"</td>
+        <td style="color:var(--danger);">"这不是纯销售"</td>
+        <td style="color:var(--success);">"你说得对，这个岗位确实有业绩要求。但跟你理解的可能不一样——公司提供精准客户资源，不用自己找客户，你只负责沟通转化。"</td>
+      </tr>
+    </table>
+  </div>
+</section>
+
+<section id="tools">
+  <div class="section-header">
+    <h2>九、工具与平台SOP</h2>
+    <p>每天开工前的标准操作配置</p>
+  </div>
+
+  <h3 style="margin-bottom:12px;font-size:16px;">浏览器工作区配置</h3>
+  <p style="color:var(--text-muted);font-size:14px;margin-bottom:12px;">在同一个浏览器打开以下4个工具，分屏操作：</p>
+  <div class="table-wrap">
+    <table>
+      <tr><th>工具</th><th>说明</th></tr>
+      <tr><td><strong>日常邮箱</strong></td><td>发过邮件有记录，方便重发</td></tr>
+      <tr><td><strong>智联招聘</strong></td><td>主用平台，后台简历管理</td></tr>
+      <tr><td><strong>Boss直聘</strong></td><td>主用平台，招呼+沟通</td></tr>
+      <tr><td><strong>话术文档（在线版）</strong></td><td>实时更新，新人直接复制</td></tr>
+    </table>
+  </div>
+
+  <h3 style="margin:20px 0 12px;font-size:16px;">AI工具辅助边界</h3>
+  <div class="table-wrap">
+    <table>
+      <tr><th>环节</th><th>AI能帮</th><th>AI帮不了</th></tr>
+      <tr>
+        <td><strong>职位发布</strong></td>
+        <td style="color:var(--success);">批量生成职位描述、多版本话术轮换</td>
+        <td style="color:var(--text-muted);">—</td>
+      </tr>
+      <tr>
+        <td><strong>后台引流</strong></td>
+        <td style="color:var(--success);">打招呼模板、分时段自动发送</td>
+        <td style="color:var(--danger);">电话确认候选人意向、判断真实意愿</td>
+      </tr>
+      <tr>
+        <td><strong>微信沟通</strong></td>
+        <td style="color:var(--success);">话术参考、跟进提醒、分类客户管理</td>
+        <td style="color:var(--danger);">建立信任关系、深度沟通、临场应变</td>
+      </tr>
+      <tr>
+        <td><strong>面试跟进</strong></td>
+        <td style="color:var(--success);">面试提醒消息模板</td>
+        <td style="color:var(--danger);">判断候选人真实状态、针对性安抚</td>
+      </tr>
+      <tr>
+        <td><strong>数据复盘</strong></td>
+        <td style="color:var(--success);">自动统计数据、生成报表、异常预警</td>
+        <td style="color:var(--text-muted);">—</td>
+      </tr>
+    </table>
+  </div>
+</section>
+
+<section id="framework">
+  <div class="section-header">
+    <h2>十、框架总图</h2>
+    <p>整个招聘体系的完整闭环</p>
+  </div>
+
+  <div class="flow-diagram" style="flex-direction:column;gap:10px;padding:24px;">
+    <div class="flow-step" style="font-size:14px;padding:10px 20px;background:var(--accent-bg);color:var(--accent);border:1px solid rgba(217,119,6,0.3);">📢 发布职位</div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-step" style="font-size:14px;padding:10px 20px;">📥 后台引流 → 加微信</div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-step" style="font-size:14px;padding:10px 20px;background:var(--accent-bg);color:var(--accent);border:1px solid rgba(217,119,6,0.3);">💬 微信沟通 → 约面 <span style="font-size:12px;color:var(--danger);">⭕ 关键</span></div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-step" style="font-size:14px;padding:10px 20px;">🏢 面试环节</div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-step" style="font-size:14px;padding:10px 20px;">📋 入职跟进</div>
+    <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap;justify-content:center;">
+      <span class="tag" style="background:var(--accent-bg);color:var(--accent);font-size:12px;">↺ 沟通六要素贯穿全程</span>
+      <span class="tag" style="background:var(--info-bg);color:var(--info);font-size:12px;">↺ 反推决策树持续优化</span>
+      <span class="tag" style="background:var(--success-bg);color:var(--success);font-size:12px;">↺ 数据复盘每日驱动</span>
+    </div>
+  </div>
+
+  <div style="margin-top:20px;display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;">
+    <div class="element-card">
+      <h4 style="color:var(--accent);">📊 数据驱动</h4>
+      <div class="el-desc">每天5~10分钟数据复盘，用数字替代感觉。核心指标：简历量/加微量/约面量/到面率/通过率/入职率</div>
+    </div>
+    <div class="element-card">
+      <h4 style="color:var(--accent);">🔄 持续优化</h4>
+      <div class="el-desc">反推决策树找到根因 → 改一个节点 → 跑三天数据 → 验证效果。不靠猜，靠测</div>
+    </div>
+    <div class="element-card">
+      <h4 style="color:var(--accent);">🎯 节点把控</h4>
+      <div class="el-desc">每个节点标准化执行：话术有模板、跟进有时间线、异议有预案。不做"凭感觉"的招聘</div>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <strong>伯乐说</strong> · RPO招聘SOP操作手册 V3.0 · 2026年6月<br>
+  <span style="font-size:12px;color:var(--text-muted);">基于14年RPO实战经验沉淀 · 持续迭代</span>
+</footer>
+
+<script>
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', function(e) {
+    document.querySelectorAll('.nav-links a').forEach(l => l.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      document.querySelectorAll('.nav-links a').forEach(a => {
+        a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+      });
+    }
+  });
+}, { rootMargin: '-80px 0px -60% 0px' });
+document.querySelectorAll('section').forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
