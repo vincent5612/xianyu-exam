@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>伯乐说 · RPO招聘系统</title>
+<style>
+:root {
+  --accent: #d97706;
+  --accent-light: #fef3c7;
+  --accent-bg: rgba(217,119,6,0.08);
+  --text: #1e293b;
+  --text-muted: #64748b;
+  --text-light: #94a3b8;
+  --bg: #f5f6f8;
+  --card: #ffffff;
+  --border: #e2e8f0;
+  --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-lg: 0 10px 40px rgba(0,0,0,0.08);
+  --radius: 16px;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Noto Sans SC", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  background: linear-gradient(135deg, #fef3c7 0%, #ffffff 40%, #f5f6f8 100%);
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: ''; position: absolute;
+  top: -200px; right: -200px;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(217,119,6,0.06) 0%, transparent 70%);
+  border-radius: 50%;
+}
+.hero::after {
+  content: ''; position: absolute;
+  bottom: -300px; left: -150px;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(37,99,235,0.04) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+nav {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 20px 48px; position: relative; z-index: 2;
+}
+nav .logo { font-weight: 800; font-size: 20px; color: var(--accent); }
+nav .logo span { color: var(--text-light); font-weight: 400; font-size: 14px; }
+nav .nav-btn {
+  padding: 8px 20px; border-radius: 8px; border: 1px solid var(--border);
+  background: var(--card); color: var(--text); font-size: 14px;
+  text-decoration: none; transition: all .2s;
+}
+nav .nav-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+.hero-content {
+  flex: 1; display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center; padding: 40px 24px 60px;
+  position: relative; z-index: 2;
+}
+.hero-content .badge {
+  display: inline-block; padding: 6px 16px; border-radius: 20px;
+  background: var(--accent); color: #fff; font-size: 13px; font-weight: 600;
+  margin-bottom: 24px; letter-spacing: 1px;
+}
+.hero-content h1 { font-size: 56px; font-weight: 800; margin-bottom: 12px; letter-spacing: -1px; }
+.hero-content h1 .accent { color: var(--accent); }
+.hero-content .tagline {
+  font-size: 20px; color: var(--text-muted); max-width: 600px; margin-bottom: 40px;
+}
+.hero-content .cta-btn {
+  display: inline-block; padding: 14px 40px; border-radius: 12px;
+  background: var(--accent); color: #fff; font-size: 18px; font-weight: 700;
+  text-decoration: none; transition: all .2s;
+  box-shadow: 0 4px 14px rgba(217,119,6,0.3);
+}
+.hero-content .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(217,119,6,0.4); }
+
+/* STATS */
+.stats {
+  display: flex; gap: 48px; margin-top: 48px;
+  justify-content: center;
+}
+.stats .stat { text-align: center; }
+.stats .stat .num { font-size: 36px; font-weight: 800; color: var(--accent); }
+.stats .stat .label { font-size: 14px; color: var(--text-muted); margin-top: 4px; }
+
+/* SECTION */
+section { padding: 80px 24px; max-width: 1100px; margin: 0 auto; }
+.section-title {
+  text-align: center; margin-bottom: 48px;
+}
+.section-title h2 { font-size: 36px; font-weight: 800; margin-bottom: 8px; }
+.section-title p { color: var(--text-muted); font-size: 16px; max-width: 500px; margin: 0 auto; }
+
+/* FEATURES GRID */
+.features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.feature-card {
+  background: var(--card); border-radius: var(--radius);
+  padding: 28px; border: 1px solid var(--border);
+  box-shadow: var(--shadow); transition: all .3s;
+}
+.feature-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+.feature-card .icon { font-size: 36px; margin-bottom: 12px; }
+.feature-card h3 { font-size: 18px; margin-bottom: 8px; }
+.feature-card p { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+
+/* FLOW PREVIEW */
+.flow-preview {
+  display: flex; align-items: center; justify-content: center;
+  gap: 6px; flex-wrap: wrap; margin: 48px 0;
+}
+.flow-preview .step {
+  padding: 10px 20px; border-radius: 10px;
+  background: var(--card); border: 1px solid var(--border);
+  font-size: 14px; font-weight: 500; text-align: center;
+  box-shadow: var(--shadow); min-width: 90px;
+}
+.flow-preview .step.highlight {
+  background: var(--accent-bg); border-color: rgba(217,119,6,0.3);
+  color: var(--accent);
+}
+.flow-preview .arrow { color: var(--text-light); font-size: 20px; }
+
+/* PRINCIPLES */
+.principles { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.principle-card {
+  background: var(--card); border-radius: 12px;
+  padding: 20px 24px; border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  display: flex; align-items: flex-start; gap: 14px;
+}
+.principle-card .p-icon { font-size: 24px; flex-shrink: 0; margin-top: 2px; }
+.principle-card h4 { font-size: 16px; margin-bottom: 4px; }
+.principle-card p { font-size: 13px; color: var(--text-muted); }
+
+/* CTA BOTTOM */
+.cta-bottom {
+  text-align: center; padding: 60px 24px 80px;
+  background: var(--accent-light); border-radius: var(--radius);
+  margin: 0 24px;
+}
+.cta-bottom h2 { font-size: 32px; font-weight: 800; margin-bottom: 12px; }
+.cta-bottom p { color: var(--text-muted); font-size: 16px; margin-bottom: 28px; }
+.cta-bottom .cta-btn {
+  display: inline-block; padding: 14px 40px; border-radius: 12px;
+  background: var(--accent); color: #fff; font-size: 18px; font-weight: 700;
+  text-decoration: none; transition: all .2s;
+  box-shadow: 0 4px 14px rgba(217,119,6,0.3);
+}
+
+/* FOOTER */
+footer {
+  text-align: center; padding: 32px 24px;
+  color: var(--text-light); font-size: 13px;
+  border-top: 1px solid var(--border);
+  max-width: 1100px; margin: 0 auto;
+}
+footer strong { color: var(--accent); }
+
+@media (max-width: 768px) {
+  nav { padding: 16px 20px; }
+  .hero-content h1 { font-size: 36px; }
+  .hero-content .tagline { font-size: 16px; }
+  .stats { gap: 24px; flex-wrap: wrap; }
+  .stats .stat .num { font-size: 28px; }
+  .features { grid-template-columns: 1fr; }
+  .principles { grid-template-columns: 1fr; }
+  .flow-preview { flex-direction: column; }
+  .flow-preview .arrow { transform: rotate(90deg); }
+  .cta-bottom h2 { font-size: 24px; }
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <nav>
+    <div class="logo">伯乐说 <span>· RPO招聘系统</span></div>
+    <a href="https://vincent5612.github.io/xianyu-exam/rpo-sop.html" class="nav-btn">进入手册 →</a>
+  </nav>
+  <div class="hero-content">
+    <span class="badge">BOLESHUO · RPO SYSTEM</span>
+    <h1>让招聘<br>有<span class="accent">章</span>可循</h1>
+    <p class="tagline">14年RPO经验沉淀的系统化招聘体系<br>五步流程 · 六要素沟通 · 四步回答法 · 数据驱动优化</p>
+    <a href="https://vincent5612.github.io/xianyu-exam/rpo-sop.html" class="cta-btn">📖 查看完整SOP手册</a>
+    <div class="stats">
+      <div class="stat"><div class="num">5</div><div class="label">标准流程步骤</div></div>
+      <div class="stat"><div class="num">6</div><div class="label">沟通要素</div></div>
+      <div class="stat"><div class="num">4</div><div class="label">回答法</div></div>
+      <div class="stat"><div class="num">14</div><div class="label">年实战沉淀</div></div>
+    </div>
+  </div>
+</div>
+
+<section>
+  <div class="section-title">
+    <h2>体系核心</h2>
+    <p>不是一套操作手册，是一张决策地图</p>
+  </div>
+  <div class="features">
+    <div class="feature-card">
+      <div class="icon">📋</div>
+      <h3>五步标准流程</h3>
+      <p>发布职位 → 后台引流 → 微信沟通 → 面试环节 → 入职跟进。每步标注所需资源与AI边界。</p>
+    </div>
+    <div class="feature-card">
+      <div class="icon">💬</div>
+      <h3>沟通六要素</h3>
+      <p>候选人从加微信到在职跟进的完整生命周期管理。前三个要素决定你的到面率。</p>
+    </div>
+    <div class="feature-card">
+      <div class="icon">🎯</div>
+      <h3>四步回答法</h3>
+      <p>正面回答 → 解释问题 → 抛优势 → 引导提问。借问题推进对话，不被动等待。</p>
+    </div>
+    <div class="feature-card">
+      <div class="icon">🧩</div>
+      <h3>候选人分类</h3>
+      <p>三问判断法快速分类：低收入/小白、技术下行、有了解但纠结。不同策略，不吃大锅饭。</p>
+    </div>
+    <div class="feature-card">
+      <div class="icon">🌳</div>
+      <h3>反推决策树</h3>
+      <p>结果差 → 往前推 → 找到根因 → 针对性改进。If-Then逻辑，告诉你现在该做什么。</p>
+    </div>
+    <div class="feature-card">
+      <div class="icon">📊</div>
+      <h3>数据复盘体系</h3>
+      <p>用数据替代感觉。核心指标：约面人数/加微量/Boss沟通量/后台未读。每天5分钟复盘。</p>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0;">
+  <div class="section-title">
+    <h2>完整链路</h2>
+    <p>从找到人到留住人的每一步</p>
+  </div>
+  <div class="flow-preview">
+    <div class="step">📢 发布职位</div>
+    <div class="arrow">→</div>
+    <div class="step">📥 后台引流</div>
+    <div class="arrow">→</div>
+    <div class="step highlight">💬 微信沟通</div>
+    <div class="arrow">→</div>
+    <div class="step">🏢 面试环节</div>
+    <div class="arrow">→</div>
+    <div class="step">📋 入职跟进</div>
+  </div>
+  <div style="text-align:center;color:var(--text-muted);font-size:14px;">
+    <span style="display:inline-block;margin:0 12px;">↺ 沟通六要素贯穿全程</span>
+    <span style="display:inline-block;margin:0 12px;">↺ 反推决策树持续优化</span>
+    <span style="display:inline-block;margin:0 12px;">↺ 数据复盘每日驱动</span>
+  </div>
+</section>
+
+<section style="padding-top:0;">
+  <div class="section-title">
+    <h2>核心方法论</h2>
+    <p>14年实战中验证过的东西，不讲理论，只给框架</p>
+  </div>
+  <div class="principles">
+    <div class="principle-card">
+      <div class="p-icon">🔗</div>
+      <div><h4>同一套内核</h4><p>招聘RPO核心能力链条：找到对的人 → 筛选 → 沟通 → 说服 → 成交 → 跟进。不论换什么岗位、什么行业，系统内核永远不变。</p></div>
+    </div>
+    <div class="principle-card">
+      <div class="p-icon">⚠️</div>
+      <div><h4>新人翻车预警</h4><p>每步配一个实战踩坑案例——聊3分钟就约面试、加微信后不马上发信息、约好面试就不管了。</p></div>
+    </div>
+    <div class="principle-card">
+      <div class="p-icon">🤖</div>
+      <div><h4>AI辅助边界</h4><p>全链5个环节明确标注：AI能帮什么、AI帮不了什么。不盲目套AI，不幻想工具替代核心环节。</p></div>
+    </div>
+    <div class="principle-card">
+      <div class="p-icon">📈</div>
+      <div><h4>数据驱动</h4><p>不看感觉看数字。每日约面≥3人、加微30~50人、Boss沟通≥150次。低于标准马上反推根因。</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-bottom">
+  <h2>让招聘有章可循</h2>
+  <p>完整的 SOP 操作手册，包含全部10大板块细节</p>
+  <a href="https://vincent5612.github.io/xianyu-exam/rpo-sop.html" class="cta-btn">📖 查看完整SOP手册</a>
+</div>
+
+<footer>
+  <strong>伯乐说</strong> · RPO招聘系统 · 2026年6月<br>
+  <span style="font-size:12px;color:var(--text-light);">基于14年RPO实战经验沉淀 · 持续迭代</span>
+</footer>
+
+</body>
+</html>
