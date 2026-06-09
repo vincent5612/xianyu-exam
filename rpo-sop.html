@@ -289,6 +289,57 @@ footer strong { color: var(--accent); }
 .brain-legend-item { display: flex; align-items: center; gap: 6px; }
 .brain-dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; }
 .brain-line { width: 26px; height: 3px; border-radius: 2px; display: inline-block; }
+
+/* AI CHAT */
+.ai-toggle {
+  position: fixed; bottom: 24px; right: 24px; z-index: 1000;
+  width: 56px; height: 56px; border-radius: 50%;
+  background: var(--accent); color: #fff; border: none;
+  font-size: 24px; cursor: pointer; box-shadow: 0 4px 16px rgba(217,119,6,0.4);
+  transition: all .2s; display: flex; align-items: center; justify-content: center;
+}
+.ai-toggle:hover { transform: scale(1.1); }
+.ai-toggle.close { background: #64748b; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+
+.chat-panel {
+  position: fixed; bottom: 90px; right: 24px; z-index: 999;
+  width: 380px; height: 520px; background: #fff; border-radius: 16px;
+  border: 1px solid var(--border); box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+  display: none; flex-direction: column; overflow: hidden;
+}
+.chat-panel.open { display: flex; }
+.chat-header {
+  padding: 14px 16px; background: var(--accent); color: #fff;
+  font-weight: 700; font-size: 15px; display: flex; align-items: center; gap: 8px;
+  flex-shrink: 0;
+}
+.chat-msgs {
+  flex: 1; overflow-y: auto; padding: 12px 16px; font-size: 14px;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.msg { padding: 10px 14px; border-radius: 12px; max-width: 85%; line-height: 1.6; }
+.msg.user { background: var(--accent-bg); align-self: flex-end; border-bottom-right-radius: 4px; }
+.msg.bot { background: #f1f5f9; align-self: flex-start; border-bottom-left-radius: 4px; }
+.msg.bot.thinking { color: var(--text-muted); font-style: italic; }
+.chat-input-wrap {
+  display: flex; gap: 8px; padding: 10px 12px; border-top: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.chat-input-wrap input {
+  flex: 1; padding: 8px 12px; border: 1px solid var(--border); border-radius: 8px;
+  font-size: 14px; outline: none;
+}
+.chat-input-wrap input:focus { border-color: var(--accent); }
+.chat-input-wrap button {
+  padding: 8px 16px; border-radius: 8px; border: none;
+  background: var(--accent); color: #fff; font-size: 14px; font-weight: 600; cursor: pointer;
+}
+.chat-input-wrap button:hover { opacity: .9; }
+
+@media (max-width: 480px) {
+  .chat-panel { width: calc(100vw - 24px); right: 12px; bottom: 80px; height: 60vh; }
+  .ai-toggle { bottom: 16px; right: 16px; width: 48px; height: 48px; font-size: 20px; }
+}
 </style>
 </head>
 <body>
@@ -982,6 +1033,15 @@ footer strong { color: var(--accent); }
 <footer>
   <strong>伯乐说</strong> · RPO招聘SOP操作手册 V3.0 · 2026年6月<br>
   <span style="font-size:12px;color:var(--text-muted);">基于14年RPO实战经验沉淀 · 持续迭代</span>
+<button class="ai-toggle" id="aiToggle">🤖</button>
+<div class="chat-panel" id="chatPanel">
+  <div class="chat-header">💬 伯乐说RPO助手</div>
+  <div class="chat-msgs" id="chatMsgs"></div>
+  <div class="chat-input-wrap">
+    <input id="chatInput" placeholder="输入你的招聘问题..." />
+    <button id="chatSend">发送</button>
+  </div>
+</div>
 </footer>
 
 <script>
@@ -1002,6 +1062,103 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, { rootMargin: '-80px 0px -60% 0px' });
 document.querySelectorAll('section').forEach(s => observer.observe(s));
+
+/* AI Chat */
+const AI_CONFIG = {
+  key: 'sk-nIA39UY7wM69Cyds4b7641D45a5d4d34B7Ff907085421475',  // ← 填入 ANTHROPIC_API_KEY
+  url: 'https://api.v36.cm/v1/messages',
+  model: 'claude-sonnet-4-6'
+};
+
+const SOP_SYSTEM_PROMPT = `你是一个招聘RPO业务专家，回答基于以下伯乐说SOP手册内容：
+
+## 系统内核（恒定不变）
+招聘RPO核心能力链条：找到对的人 → 筛选 → 沟通 → 说服 → 成交 → 跟进
+同一套知识框架，同一个底层逻辑，不论换什么岗位、什么行业，系统内核永远不变。
+核心方法论：沟通六要素（约面前意向沟通→约面后信任沟通→面试后关系梳理→Offer沟通→入职前维护→在职跟进）、四步回答法（正面回答→解释问题→抛优势→引导提问）、候选人分类法（三问判断法分类）、反推决策树
+
+## 五步标准流程
+1. 发布职位：Boss/智联平台，标签管理暗号区分
+2. 后台引流→加微信：分时段触达，先电话确认再加微
+3. 微信沟通→约面（最关键节点）：像朋友一样沟通，至少20分钟起
+4. 面试环节：面试前1-2天必须互动，到面率保障
+5. 入职跟进：Offer后必须电话回访，在岗关怀促进转介绍
+
+## 四步回答法
+正面回答 → 解释问题 → 抛优势 → 引导提问（反问拿回主动权）
+
+## 数据复盘标准
+每日约面人数≥3人、每日加微30~50人、Boss沟通量≥150/天
+
+回答简洁、直接，用招聘从业者的语言，不要长篇大论。`;
+
+const chatToggle = document.getElementById('aiToggle');
+const chatPanel = document.getElementById('chatPanel');
+const chatMsgs = document.getElementById('chatMsgs');
+const chatInput = document.getElementById('chatInput');
+const chatSend = document.getElementById('chatSend');
+
+chatToggle.addEventListener('click', () => {
+  chatPanel.classList.toggle('open');
+  chatToggle.classList.toggle('close');
+  chatToggle.textContent = chatPanel.classList.contains('open') ? '✕' : '🤖';
+  if (chatPanel.classList.contains('open') && chatMsgs.children.length === 0) {
+    addMsg('bot', '👋 你好，我是伯乐说RPO助手。有什么招聘相关的问题可以问我。');
+  }
+});
+
+chatSend.addEventListener('click', sendMsg);
+chatInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') sendMsg(); });
+
+function addMsg(role, text) {
+  const div = document.createElement('div');
+  div.className = 'msg ' + role;
+  div.textContent = text;
+  chatMsgs.appendChild(div);
+  chatMsgs.scrollTop = chatMsgs.scrollHeight;
+}
+
+async function sendMsg() {
+  const q = chatInput.value.trim();
+  if (!q) return;
+  addMsg('user', q);
+  chatInput.value = '';
+
+  if (!AI_CONFIG.key) {
+    addMsg('bot', '⚠️ 请先在页面代码中填入 ANTHROPIC_API_KEY（搜索 AI_CONFIG.key 找到位置）。');
+    return;
+  }
+
+  const thinkDiv = document.createElement('div');
+  thinkDiv.className = 'msg bot thinking';
+  thinkDiv.textContent = '🤔 思考中...';
+  chatMsgs.appendChild(thinkDiv);
+  chatMsgs.scrollTop = chatMsgs.scrollHeight;
+
+  try {
+    const resp = await fetch(AI_CONFIG.url, {
+      method: 'POST',
+      headers: {
+        'x-api-key': AI_CONFIG.key,
+        'anthropic-version': '2023-06-01',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        model: AI_CONFIG.model,
+        max_tokens: 1500,
+        system: SOP_SYSTEM_PROMPT,
+        messages: [{ role: 'user', content: q }]
+      })
+    });
+    const data = await resp.json();
+    thinkDiv.remove();
+    const reply = data.content?.map?.(c => c.text).join('') || data.content?.[0]?.text || '抱歉，暂时无法回答。';
+    addMsg('bot', reply);
+  } catch (e) {
+    thinkDiv.remove();
+    addMsg('bot', '❌ 请求失败：' + e.message);
+  }
+}
 </script>
 </body>
 </html>
