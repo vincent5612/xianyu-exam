@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RPO招聘系统 · 闭环大脑结构</title>
+<style>
+:root {
+  --accent: #d97706;
+  --accent-light: #fef3c7;
+  --bg: #ffffff;
+  --card: #f8fafc;
+  --text: #1e293b;
+  --text-muted: #64748b;
+  --border: #e2e8f0;
+  --shadow: 0 4px 20px rgba(0,0,0,0.06);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Noto Sans SC", sans-serif;
+  background: #f5f6f8; color: var(--text); line-height: 1.6;
+}
+.container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
+
+.header { text-align: center; margin-bottom: 40px; }
+.header h1 { font-size: 32px; font-weight: 800; margin-bottom: 8px; }
+.header h1 span { color: var(--accent); }
+.header p { color: var(--text-muted); font-size: 15px; }
+
+/* DIAGRAM WRAPPER */
+.diagram-wrap {
+  background: var(--bg); border-radius: 20px;
+  border: 1px solid var(--border); box-shadow: var(--shadow);
+  padding: 40px; overflow: hidden; position: relative;
+}
+
+/* SVG styles */
+svg { width: 100%; height: auto; display: block; }
+
+/* LEGEND */
+.legend {
+  display: flex; justify-content: center; gap: 32px; margin-top: 24px; flex-wrap: wrap;
+}
+.legend-item { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-muted); }
+.legend-item .dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
+.dot-forward { background: var(--accent); }
+.dot-reverse { background: #dc2626; }
+.dot-core { background: #3b82f6; }
+
+/* INFO CARDS */
+.info-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-top: 32px; }
+.info-card {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 12px; padding: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+.info-card h3 { font-size: 16px; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+.info-card p { font-size: 13px; color: var(--text-muted); }
+
+@media (max-width: 768px) {
+  .info-grid { grid-template-columns: 1fr; }
+  .header h1 { font-size: 24px; }
+  .diagram-wrap { padding: 20px; }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <h1>招聘RPO系统 · <span>闭环大脑结构</span></h1>
+    <p>正向执行流 → 数据反馈 → 反推优化 → 回到执行，形成持续进化的闭环</p>
+  </div>
+
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 920 700" xmlns="http://www.w3.org/2000/svg" style="max-height:700px;">
+      
+      <!-- Definitions -->
+      <defs>
+        <marker id="arrow-forward" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="#d97706"/>
+        </marker>
+        <marker id="arrow-reverse" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="#dc2626"/>
+        </marker>
+        <marker id="arrow-core" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="#3b82f6"/>
+        </marker>
+        <filter id="shadow">
+          <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.1"/>
+        </filter>
+      </defs>
+
+      <!-- Background arcs for visual guidance -->
+      <!-- Outer ring (forward flow) -->
+      <path d="M 460 100 A 280 280 0 0 1 720 320" fill="none" stroke="#fef3c7" stroke-width="40" stroke-linecap="round" opacity="0.5"/>
+      <path d="M 720 320 A 280 280 0 0 1 460 600" fill="none" stroke="#fef3c7" stroke-width="40" stroke-linecap="round" opacity="0.5"/>
+      <path d="M 460 600 A 280 280 0 0 1 200 320" fill="none" stroke="#fef3c7" stroke-width="40" stroke-linecap="round" opacity="0.5"/>
+      <path d="M 200 320 A 280 280 0 0 1 460 100" fill="none" stroke="#fef3c7" stroke-width="40" stroke-linecap="round" opacity="0.5"/>
+
+      <!-- CENTER CORE -->
+      <circle cx="460" cy="350" r="85" fill="#eef2ff" stroke="#3b82f6" stroke-width="3" filter="url(#shadow)"/>
+      <circle cx="460" cy="350" r="70" fill="none" stroke="#3b82f6" stroke-width="1" stroke-dasharray="4,4"/>
+      <text x="460" y="320" font-size="16" font-weight="800" fill="#3b82f6" text-anchor="middle">🧠</text>
+      <text x="460" y="345" font-size="16" font-weight="800" fill="#1e293b" text-anchor="middle">系统内核</text>
+      <text x="460" y="365" font-size="12" fill="#64748b" text-anchor="middle">知识框架不变</text>
+      <text x="460" y="385" font-size="12" fill="#64748b" text-anchor="middle">六要素·四步法·分类法</text>
+
+      <!-- STEP 1: 发布职位 - Top -->
+      <rect x="370" y="58" width="180" height="56" rx="28" fill="#ffffff" stroke="#d97706" stroke-width="2" filter="url(#shadow)"/>
+      <text x="460" y="83" font-size="18" font-weight="700" fill="#d97706" text-anchor="middle">📢 发布职位</text>
+      <text x="460" y="102" font-size="10" fill="#64748b" text-anchor="middle">Boss/智联 · 标签管理</text>
+
+      <!-- STEP 2: 后台引流 - Right -->
+      <rect x="730" y="220" width="180" height="56" rx="28" fill="#ffffff" stroke="#d97706" stroke-width="2" filter="url(#shadow)"/>
+      <text x="820" y="245" font-size="18" font-weight="700" fill="#d97706" text-anchor="middle">📥 后台引流</text>
+      <text x="820" y="264" font-size="10" fill="#64748b" text-anchor="middle">分时段触达 · 加微信</text>
+
+      <!-- STEP 3: 微信沟通 - Bottom -->
+      <rect x="730" y="440" width="180" height="56" rx="28" fill="#fef2f2" stroke="#dc2626" stroke-width="2" filter="url(#shadow)"/>
+      <text x="820" y="465" font-size="18" font-weight="700" fill="#dc2626" text-anchor="middle">💬 微信沟通</text>
+      <text x="820" y="484" font-size="10" fill="#64748b" text-anchor="middle">⚠️ 最关键节点 · 20min+</text>
+
+      <!-- STEP 4: 面试环节 - Bottom Left -->
+      <rect x="100" y="440" width="180" height="56" rx="28" fill="#ffffff" stroke="#d97706" stroke-width="2" filter="url(#shadow)"/>
+      <text x="190" y="465" font-size="18" font-weight="700" fill="#d97706" text-anchor="middle">🏢 面试环节</text>
+      <text x="190" y="484" font-size="10" fill="#64748b" text-anchor="middle">面试前跟进 · 到面率保障</text>
+
+      <!-- STEP 5: 入职跟进 - Left -->
+      <rect x="100" y="220" width="180" height="56" rx="28" fill="#ffffff" stroke="#d97706" stroke-width="2" filter="url(#shadow)"/>
+      <text x="190" y="245" font-size="18" font-weight="700" fill="#d97706" text-anchor="middle">📋 入职跟进</text>
+      <text x="190" y="264" font-size="10" fill="#64748b" text-anchor="middle">Offer回访 · 在岗关怀</text>
+
+      <!-- FORWARD ARROWS (outer ring) -->
+      <!-- 1→2 -->
+      <path d="M 550 86 Q 640 86 700 140 Q 730 180 730 235" fill="none" stroke="#d97706" stroke-width="2.5" marker-end="url(#arrow-forward)"/>
+      <!-- 2→3 -->
+      <path d="M 820 280 Q 820 360 820 440" fill="none" stroke="#d97706" stroke-width="2.5" marker-end="url(#arrow-forward)"/>
+      <!-- 3→4 -->
+      <path d="M 730 460 Q 640 460 550 460 Q 370 460 280 460" fill="none" stroke="#d97706" stroke-width="2.5" marker-end="url(#arrow-forward)"/>
+      <!-- 4→5 -->
+      <path d="M 190 495 Q 190 530 190 540 Q 190 580 190 235" fill="none" stroke="#d97706" stroke-width="2.5" marker-end="url(#arrow-forward)"/>
+      <!-- 5→1 -->
+      <path d="M 280 230 Q 370 230 370 86" fill="none" stroke="#d97706" stroke-width="2.5" marker-end="url(#arrow-forward)"/>
+
+      <!-- REVERSE/OPTIMIZATION ARROWS (inner ring, dashed red) -->
+      <!-- Central core connects outward -->
+      <!-- 数据 from 入职跟进 反推 -->
+      <path d="M 280 240 L 380 310" fill="none" stroke="#dc2626" stroke-width="1.8" stroke-dasharray="6,4" marker-end="url(#arrow-reverse)"/>
+      <path d="M 730 240 L 540 310" fill="none" stroke="#dc2626" stroke-width="1.8" stroke-dasharray="6,4" marker-end="url(#arrow-reverse)"/>
+
+      <!-- DATA FEEDBACK LABELS -->
+      <rect x="330" y="555" width="260" height="32" rx="16" fill="#fef2f2" stroke="#dc2626" stroke-width="1"/>
+      <text x="460" y="575" font-size="13" font-weight="600" fill="#dc2626" text-anchor="middle">📊 数据反馈：到面率 / 通过率 / 入职率</text>
+
+      <!-- OPTIMIZATION LABELS -->
+      <rect x="330" y="595" width="260" height="32" rx="16" fill="#fef3c7" stroke="#d97706" stroke-width="1"/>
+      <text x="460" y="615" font-size="13" font-weight="600" fill="#d97706" text-anchor="middle">🔄 反推优化：反推决策树 → 改一个节点 → 测三天</text>
+
+      <!-- Connection from bottom back to top -->
+      <path d="M 460 630 L 460 660 Q 460 680 460 86" fill="none" stroke="#3b82f6" stroke-width="2.5" stroke-dasharray="8,4" marker-end="url(#arrow-core)"/>
+      
+      <!-- Labels on the reverse path -->
+      <rect x="490" y="640" width="140" height="24" rx="12" fill="#eef2ff" stroke="#3b82f6" stroke-width="1"/>
+      <text x="560" y="657" font-size="12" font-weight="600" fill="#3b82f6" text-anchor="middle">🔄 持续进化闭环</text>
+
+      <!-- STEP LABELS -->
+      <text x="920" y="120" font-size="14" font-weight="700" fill="#d97706" text-anchor="end">⬆ 正向执行流</text>
+      <text x="920" y="140" font-size="11" fill="#64748b" text-anchor="end">金色箭头 = 标准操作流程</text>
+      
+      <!-- STEP NUMBERS -->
+      <circle cx="380" cy="68" r="14" fill="#d97706"/><text x="380" y="73" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">1</text>
+      <circle cx="740" cy="230" r="14" fill="#d97706"/><text x="740" y="235" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">2</text>
+      <circle cx="740" cy="450" r="14" fill="#dc2626"/><text x="740" y="455" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">3</text>
+      <circle cx="110" cy="450" r="14" fill="#d97706"/><text x="110" y="455" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">4</text>
+      <circle cx="110" cy="230" r="14" fill="#d97706"/><text x="110" y="235" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">5</text>
+
+    </svg>
+  </div>
+
+  <div class="legend">
+    <div class="legend-item"><span class="dot dot-forward"></span> 正向执行流（标准流程）</div>
+    <div class="legend-item"><span class="dot dot-reverse"></span> 数据反馈 + 反推优化</div>
+    <div class="legend-item"><span class="dot dot-core"></span> 系统内核（知识框架）</div>
+  </div>
+
+  <div class="info-grid">
+    <div class="info-card">
+      <h3>📋 正向执行流</h3>
+      <p>五步标准流程从发布职位到入职跟进，每步标注所需资源与AI边界。Step 3（微信沟通）是关键节点，决定到面率。</p>
+    </div>
+    <div class="info-card">
+      <h3>📊 数据反馈机制</h3>
+      <p>每日复盘核心指标：约面人数/加微量/Boss沟通量。低于标准线立即触发反推流程，不靠感觉靠数据。</p>
+    </div>
+    <div class="info-card">
+      <h3>🔄 反推决策树</h3>
+      <p>结果差 → 往前推 → 找到根因 → 针对性改进。每步都是if-then决策，改一个节点跑三天数据再判断。</p>
+    </div>
+  </div>
+
+  <div class="info-card" style="margin-top:16px;padding:16px 20px;background:var(--accent-light);border:1px solid rgba(217,119,6,0.2);">
+    <p style="font-size:14px;text-align:center;">
+      <strong>🧠 系统核心逻辑：</strong>
+      同一套知识框架，同一个底层逻辑，不论换什么岗位、什么行业，系统内核永远不变。
+      数据驱动改进，形成持续进化的闭环。
+    </p>
+  </div>
+
+</div>
+</body>
+</html>
